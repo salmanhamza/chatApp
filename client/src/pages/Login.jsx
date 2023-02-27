@@ -4,14 +4,19 @@ import { Link } from "react-router-dom";
 import "./Login.css";
 
 const defaultValue = {
-  name: "",
   email: "",
   password: "",
 };
 const Login = () => {
   const [user, setUser] = useState(defaultValue);
 
-  const onValueChange = (e) => {};
+  const onValueChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+  };
   return (
     <Container>
       <Row>
@@ -20,13 +25,15 @@ const Login = () => {
           md={7}
           className="d-flex align-items-center justify-content-center flex-diresction-column"
         >
-          <Form style={{ width: "80%", minWidth: 500 }}>
+          <Form style={{ width: "80%", minWidth: 500 }} onSubmit={handleLogin}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control
                 type="email"
                 placeholder="Enter email"
                 onChange={onValueChange}
+                name="email"
+                required
               />
               <Form.Text className="text-muted"></Form.Text>
             </Form.Group>
@@ -37,6 +44,8 @@ const Login = () => {
                 type="password"
                 placeholder="Password"
                 onChange={onValueChange}
+                name="password"
+                required
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">

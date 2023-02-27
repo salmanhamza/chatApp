@@ -40,7 +40,7 @@ const Signup = () => {
     try {
       setUploadingImg(true);
       let res = await fetch(
-        "https://api.claudinary.com/v1_1/salmanhamza/image/upload",
+        "https://api.cloudinary.com/v1_1/salmanhamza/image/upload",
         {
           method: "post",
           body: data,
@@ -120,7 +120,7 @@ const Signup = () => {
               <Form.Check type="checkbox" label="Check me out" />
             </Form.Group>
             <Button variant="primary" type="submit">
-              Create Account
+              {uploadingImg ? "Creating Account..." : "Create Account"}
             </Button>
             <div className="py-4">
               <p className="text-center">
